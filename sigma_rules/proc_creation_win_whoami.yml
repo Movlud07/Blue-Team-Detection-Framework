@@ -1,0 +1,16 @@
+title: Whoami Execution Detection
+id: 5f2e8276-2d15-4613-9781-6454b87440e3
+status: experimental
+description: Detects the execution of whoami.exe, which is often used by attackers for situational awareness.
+author: Movlud Mirzazade
+date: 2026/04/28
+logsource:
+    category: process_creation
+    product: windows
+detection:
+    selection:
+        Image|endswith: '\whoami.exe'
+    condition: selection
+falsepositives:
+    - Administrative scripts
+level: medium
