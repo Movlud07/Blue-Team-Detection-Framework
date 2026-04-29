@@ -1,0 +1,19 @@
+title: Web Application Brute Force Attempt
+id: a23f1b63-1234-4567-890a-bcdef0123456
+status: stable
+description: Detects multiple failed login attempts to a web server (HTTP 401 Unauthorized or 403 Forbidden) from the same source IP in a short timeframe.
+author: Movlud Mirzazade (Blue Team SOC)
+date: 2026/04/29
+logsource:
+    category: webserver
+detection:
+    selection:
+        sc_status: 
+            - 401
+            - 403
+    condition: selection | count(sc_status) by c_ip > 10
+timeframe: 5m
+level: high
+tags:
+    - attack.credential_access
+    - attack.t1110.001
