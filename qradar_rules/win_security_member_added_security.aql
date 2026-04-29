@@ -1,1 +1,1 @@
-SELECT UTF8(payload) FROM events WHERE devicetype=12 AND (("Event ID"=4728 OR "Event ID"=632) OR ("EventID"=4728 OR "EventID"=632) OR ("qidEventId"=4728 OR "qidEventId"=632))
+SELECT UTF8(payload) FROM events WHERE devicetype=12 AND ("EventID" IN (4728, 4732, 4756, 632) OR "qidEventId" IN (4728, 4732, 4756, 632))
