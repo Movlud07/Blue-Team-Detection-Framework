@@ -1,0 +1,25 @@
+title: Suspicious Outbound Port Activity
+id: 5b4c102b-a19f-4318-ae2d-d0dc6a41cd2f
+status: stable
+description: Detects network traffic to ports commonly used by malware, reverse shells (e.g. Metasploit), and C2 servers.
+author: Movlud Mirzazade (SOC Analyst)
+date: 2026/04/29
+logsource:
+    category: network_connection
+    # Splunk-dakı şəbəkə logları üçün
+detection:
+    selection:
+        DestinationPort:
+            - 4444  # Metasploit Default Reverse Shell
+            - 5555  # Common Remote Access Trojan (RAT)
+            - 6666  # Common Malware / IRC
+            - 7777  # Malware / C2
+            - 9999  # Metasploit / RAT
+            - 31337 # Back Orifice / Legacy Hack Tools
+    condition: selection
+falsepositives:
+    - Internal custom applications using these ports
+level: high
+tags:
+    - attack.command_and_control
+    - attack.t1095
