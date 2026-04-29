@@ -1,7 +1,9 @@
 {
   "name": "SOC Alert: Windows Security Logs Cleared",
-  "type": "MEMBER",
+  "type": "EVENT",
   "enabled": true,
+  "base_capacity": 100,
+  "base_low_level_category_id": 0,
   "tests": [
     {
       "type": "AqlFilterTest",
