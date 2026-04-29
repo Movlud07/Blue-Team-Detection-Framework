@@ -1,8 +1,1 @@
-source=WinEventLog:* AND (c-useragent="Q2hyb21l*" OR c-useragent="QXBwbGVXZWJLaX*" OR c-useragent="RGFsdmlr*" OR c-useragent="TW96aWxsY*")
-
-``` name: Suspicious Base64 Encoded User-Agent ```
-``` uuid: d443095b-a221-4957-a2c4-cd1756c9b747 ```
-``` author: Nasreddine Bencherchali (Nextron Systems) ```
-``` licence: DRL 1.1 ```
-
-``` Unmapped fields: c-useragent ```
+index=* AND (user_agent="Q2hyb21l*" OR user_agent="QXBwbGVXZWJLaX*" OR user_agent="RGFsdmlr*" OR user_agent="TW96aWxsY*")
