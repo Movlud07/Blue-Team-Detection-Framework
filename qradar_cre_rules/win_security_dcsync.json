@@ -1,0 +1,11 @@
+{
+  "name": "SOC Alert: DCSync Attack Detected",
+  "type": "MEMBER",
+  "enabled": true,
+  "tests": [
+    {
+      "type": "AqlFilterTest",
+      "aql": "SELECT UTF8(payload) FROM events WHERE devicetype=12 AND (\"EventID\"=4662 OR \"qidEventId\"=4662) AND UTF8(payload) ILIKE '%Replicating Directory Changes All%' AND UTF8(payload) ILIKE '%0x100%'"
+    }
+  ]
+}
