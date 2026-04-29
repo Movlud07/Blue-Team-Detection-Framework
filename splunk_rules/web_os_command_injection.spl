@@ -1,8 +1,1 @@
-source=WinEventLog:* AND (c_uri="*/bin/bash*" OR c_uri="*/bin/sh*" OR c_uri="*cat /etc/passwd*" OR c_uri="*curl -s*" OR c_uri="*wget http*" OR c_uri="*nc -e*" OR c_uri="*whoami*")
-
-``` name: OS Command Injection Patterns ```
-``` uuid: b2c3d4e5-1234-4567-8901-abcdef123457 ```
-``` author: Movlud Mirzazade (SOC Analyst) ```
-``` licence: DRL 1.1 ```
-
-``` Unmapped fields: c_uri ```
+index=* AND (request_uri="*/bin/bash*" OR request_uri="*/bin/sh*" OR request_uri="*cat /etc/passwd*" OR request_uri="*curl -s*" OR request_uri="*wget http*" OR request_uri="*nc -e*" OR request_uri="*whoami*")
