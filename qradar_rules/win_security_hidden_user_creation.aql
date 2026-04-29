@@ -1,0 +1,6 @@
+SELECT UTF8(payload) FROM events WHERE devicetype=12 AND (("Event ID"=4720 OR "EventID"=4720 OR "qidEventId"=4720) AND ("Target Username" ILIKE '%$' OR "User" ILIKE '%$' OR "userName" ILIKE '%$' OR "Target User Name" ILIKE '%$')) AND  NOT (("Target Username"='HomeGroupUser$' OR "User"='HomeGroupUser$' OR "userName"='HomeGroupUser$' OR "Target User Name"='HomeGroupUser$'))
+
+/* name: Hidden Local User Creation */
+/* uuid: 7b449a5e-1db5-4dd0-a2dc-4e3a67282538 */
+/* author: Christian Burkard (Nextron Systems) */
+/* licence: DRL 1.1 */
