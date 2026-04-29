@@ -1,0 +1,24 @@
+``` linux_network_connection ```
+index=linux AND (DestinationPort="4444" OR DestinationPort="5555" OR DestinationPort="6666" OR DestinationPort="7777" OR DestinationPort="9999" OR DestinationPort="31337")
+
+``` name: Suspicious Outbound Port Activity ```
+``` uuid: 5b4c102b-a19f-4318-ae2d-d0dc6a41cd2f ```
+``` author: Movlud Mirzazade (SOC Analyst) ```
+``` licence: DRL 1.1 ```
+
+``` macos_network_connection ```
+index=macos AND (DestinationPort="4444" OR DestinationPort="5555" OR DestinationPort="6666" OR DestinationPort="7777" OR DestinationPort="9999" OR DestinationPort="31337")
+
+``` name: Suspicious Outbound Port Activity ```
+``` uuid: 5b4c102b-a19f-4318-ae2d-d0dc6a41cd2f ```
+``` author: Movlud Mirzazade (SOC Analyst) ```
+``` licence: DRL 1.1 ```
+
+``` windows_network_connection ```
+source=WinEventLog:Microsoft-Windows-Sysmon/Operational AND sourcetype=XmlWinEventLog:Microsoft-Windows-Sysmon/Operational AND (DestinationPort="4444" OR DestinationPort="5555" OR DestinationPort="6666" OR DestinationPort="7777" OR DestinationPort="9999" OR DestinationPort="31337")
+
+``` name: Suspicious Outbound Port Activity ```
+``` uuid: 5b4c102b-a19f-4318-ae2d-d0dc6a41cd2f ```
+``` author: Movlud Mirzazade (SOC Analyst) ```
+``` licence: DRL 1.1 ```
+
