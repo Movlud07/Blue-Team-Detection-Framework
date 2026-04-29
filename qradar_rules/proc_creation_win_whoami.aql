@@ -1,6 +1,1 @@
 SELECT UTF8(payload) FROM events WHERE devicetype=12 AND category=8110 AND ("Process Path" ILIKE '%\whoami.exe' OR "Process Name" ILIKE '%\whoami.exe' OR "DGApplication" ILIKE '%\whoami.exe' OR "ProcessName" ILIKE '%\whoami.exe')
-
-/* name: Whoami Execution Detection */
-/* uuid: 5f2e8276-2d15-4613-9781-6454b87440e3 */
-/* author: Movlud Mirzazade */
-/* licence: DRL 1.1 */
