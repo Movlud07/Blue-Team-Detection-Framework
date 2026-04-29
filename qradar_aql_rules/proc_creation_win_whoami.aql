@@ -1,0 +1,1 @@
+SELECT UTF8(payload) FROM events WHERE devicetype=12 AND ("EventID" IN (1, 4688) OR "qidEventId" IN (1, 4688)) AND UTF8(payload) ILIKE '%whoami.exe%'
