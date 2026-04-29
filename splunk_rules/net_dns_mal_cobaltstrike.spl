@@ -1,0 +1,8 @@
+source=WinEventLog:* AND ((query="aaa.stage.*" OR query="post.1*") OR query="*.stage.123456.*")
+
+``` name: Cobalt Strike DNS Beaconing ```
+``` uuid: 2975af79-28c4-4d2f-a951-9095f229df29 ```
+``` author: Florian Roth (Nextron Systems) ```
+``` licence: DRL 1.1 ```
+
+``` Unmapped fields: query ```
