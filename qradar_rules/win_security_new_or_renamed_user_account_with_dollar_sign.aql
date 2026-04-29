@@ -1,8 +1,1 @@
 SELECT UTF8(payload) FROM events WHERE devicetype=12 AND ((("Event ID"=4720 OR "EventID"=4720 OR "qidEventId"=4720) AND "SamAccountName" ILIKE '%$%') OR (("Event ID"=4781 OR "EventID"=4781 OR "qidEventId"=4781) AND "NewTargetUserName" ILIKE '%$%')) AND  NOT ((("Event ID"=4720 OR "EventID"=4720 OR "qidEventId"=4720) AND ("Target Username"='HomeGroupUser$' OR "User"='HomeGroupUser$' OR "userName"='HomeGroupUser$' OR "Target User Name"='HomeGroupUser$')))
-
-/* name: New or Renamed User Account with '$' Character */
-/* uuid: cfeed607-6aa4-4bbd-9627-b637deb723c8 */
-/* author: Ilyas Ochkov, oscd.community */
-/* licence: DRL 1.1 */
-
-/* Unmapped fields: SamAccountName */
