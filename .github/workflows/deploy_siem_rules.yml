@@ -38,6 +38,8 @@ jobs:
       env:
         QRADAR_URL: ${{ secrets.QRADAR_URL }}
         QRADAR_TOKEN: ${{ secrets.QRADAR_TOKEN }}
+        TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
       run: |
         cd scripts
         python qradar_push.py
