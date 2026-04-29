@@ -2,8 +2,8 @@ import os
 import requests
 import glob
 import urllib3
-import json
 
+# SIEM lablarında SSL xətası almamaq üçün xəbərdarlıqları söndürürük
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 # GitHub Secrets-dən gələcək gizli məlumatlar
@@ -11,9 +11,9 @@ QRADAR_URL = os.environ.get("QRADAR_URL")
 QRADAR_TOKEN = os.environ.get("QRADAR_TOKEN")
 
 def push_to_qradar():
+    # Content-Type application/json SİLİNDİ, çünki QRadar URL parametri tələb edir
     headers = {
         "SEC": QRADAR_TOKEN,
-        "Content-Type": "application/json",
         "Accept": "application/json"
     }
     
@@ -24,9 +24,9 @@ def push_to_qradar():
         rule_name = os.path.basename(file_path).replace(".aql", "")
         
         with open(file_path, "r", encoding="utf-8") as f:
-            aql_query = f.read()
+            # Faylı oxuyur və kənarlardakı boşluqları təmizləyir
+            aql_query = f.read().strip()
             
-        # DÜZƏLİŞ BURADADIR: QRadar yalnız query_expression qəbul edir!
         payload = {
             "query_expression": aql_query
         }
@@ -34,7 +34,9 @@ def push_to_qradar():
         endpoint = f"{QRADAR_URL}/api/ariel/searches"
         
         print(f"[{rule_name}] QRadar-a göndərilir...")
-        response = requests.post(endpoint, headers=headers, data=json.dumps(payload), verify=False)
+        
+        # ƏN KRİTİK DÜZƏLİŞ: data=json.dumps(payload) YOX, params=payload İSTİFADƏ EDİLİR!
+        response = requests.post(endpoint, headers=headers, params=payload, verify=False)
         
         if response.status_code in [200, 201]:
             print(f"✅ Uğurlu: {rule_name}")
