@@ -1,1 +1,1 @@
-SELECT UTF8(payload) FROM events WHERE devicetype=12 AND ((("Event ID"=517 OR "EventID"=517 OR "qidEventId"=517) AND "Provider_Name"='Security') OR (("Event ID"=1102 OR "EventID"=1102 OR "qidEventId"=1102) AND "Provider_Name"='Microsoft-Windows-Eventlog'))
+SELECT UTF8(payload) FROM events WHERE devicetype=12 AND (("EventID" IN (517, 1102, 104) OR "qidEventId" IN (517, 1102, 104)) OR (("EventID" IN (1, 4688) OR "qidEventId" IN (1, 4688)) AND UTF8(payload) ILIKE '%wevtutil%' AND UTF8(payload) ILIKE '% cl %'))
