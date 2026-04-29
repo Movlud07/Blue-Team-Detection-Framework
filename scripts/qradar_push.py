@@ -3,7 +3,7 @@ import requests
 import glob
 import urllib3
 
-# SSL xəbərdarlıqlarını söndürürük
+# SSL xəbərdarlıqların söndürürük
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 # URL-i təmizləyirik (sondakı slash-ı silirik ki, xəta olmasın)
