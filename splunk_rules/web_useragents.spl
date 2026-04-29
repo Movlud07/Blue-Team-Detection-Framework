@@ -1,8 +1,1 @@
-source=WinEventLog:* AND (cs-user-agent="*Wfuzz/*" OR cs-user-agent="*WPScan v*" OR cs-user-agent="*Recon-ng/v*" OR cs-user-agent="*GIS - AppSec Team - Project Vision*")
-
-``` name: Suspicious User-Agents Related To Recon Tools ```
-``` uuid: 19aa4f58-94ca-45ff-bc34-92e533c0994a ```
-``` author: Nasreddine Bencherchali (Nextron Systems), Tim Shelton ```
-``` licence: DRL 1.1 ```
-
-``` Unmapped fields: cs-user-agent ```
+index=* AND (user_agent="*Wfuzz/*" OR user_agent="*WPScan v*" OR user_agent="*Recon-ng/v*" OR user_agent="*GIS - AppSec Team - Project Vision*")
