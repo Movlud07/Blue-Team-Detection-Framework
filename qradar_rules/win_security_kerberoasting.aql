@@ -1,0 +1,6 @@
+SELECT UTF8(payload) FROM events WHERE devicetype=12 AND (("Event ID"=4769 OR "EventID"=4769 OR "qidEventId"=4769) AND "Status"='0x0' AND "TicketEncryptionType"='0x17') AND  NOT (("Service Name" ILIKE '%krbtgt' OR "Service Name" ILIKE '%$') OR ("Target Username" ILIKE '%$@%' OR "User" ILIKE '%$@%' OR "userName" ILIKE '%$@%' OR "Target User Name" ILIKE '%$@%'))
+
+/* name: Kerberoasting Activity - Initial Query */
+/* uuid: d04ae2b8-ad54-4de0-bd87-4bc1da66aa59 */
+/* author: @kostastsale */
+/* licence: DRL 1.1 */
