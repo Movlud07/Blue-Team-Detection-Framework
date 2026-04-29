@@ -32,7 +32,7 @@ def push_cre_rules():
     
     # QRadar API Versiyasını qeyd edirik
     cre_headers = headers.copy()
-    cre_headers["Version"] = "12.0" 
+    cre_headers["Version"] = "19.0" 
     
     for file_path in cre_files:
         rule_name = os.path.basename(file_path).replace(".json", "")
