@@ -1,0 +1,11 @@
+{
+  "name": "SOC Alert: Windows Security Logs Cleared",
+  "type": "MEMBER",
+  "enabled": true,
+  "tests": [
+    {
+      "type": "AqlFilterTest",
+      "aql": "SELECT UTF8(payload) FROM events WHERE devicetype=12 AND ((\"EventID\" IN (517, 1102, 104) OR \"qidEventId\" IN (517, 1102, 104)) OR ((\"EventID\" IN (1, 4688) OR \"qidEventId\" IN (1, 4688)) AND UTF8(payload) ILIKE '%wevtutil%' AND UTF8(payload) ILIKE '% cl %'))"
+    }
+  ]
+}
