@@ -1,0 +1,6 @@
+SELECT UTF8(payload) FROM events WHERE devicetype=12 AND (("Event ID"=4662 OR "EventID"=4662 OR "qidEventId"=4662) AND ("Properties" ILIKE '%Replicating Directory Changes All%' OR "Properties" ILIKE '%1131f6ad-9c07-11d1-f79f-00c04fc2dcd2%' OR "Properties" ILIKE '%1131f6aa-9c07-11d1-f79f-00c04fc2dcd2%' OR "Properties" ILIKE '%9923a32a-3607-11d2-b9be-0000f87a36b2%' OR "Properties" ILIKE '%89e95b76-444d-4c62-991a-0facbeda640c%') AND "AccessMask"='0x100') AND  NOT ("SubjectDomainName"='Window Manager' OR ("Target Username" ILIKE 'NT AUT%' OR "Target Username" IMATCHES 'MSOL_.*') OR "Target Username" ILIKE '%$')
+
+/* name: Mimikatz DC Sync */
+/* uuid: 611eab06-a145-4dfa-a295-3ccc5c20f59a */
+/* author: Benjamin Delpy, Florian Roth (Nextron Systems), Scott Dermott, Sorina Ionescu */
+/* licence: DRL 1.1 */
