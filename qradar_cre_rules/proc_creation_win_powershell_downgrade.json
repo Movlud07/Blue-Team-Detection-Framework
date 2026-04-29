@@ -1,0 +1,11 @@
+{
+  "name": "SOC Alert: PowerShell Downgrade Attack",
+  "type": "MEMBER",
+  "enabled": true,
+  "tests": [
+    {
+      "type": "AqlFilterTest",
+      "aql": "SELECT UTF8(payload) FROM events WHERE devicetype=12 AND (\"EventID\" IN (1, 4688) OR \"qidEventId\" IN (1, 4688)) AND UTF8(payload) ILIKE '%powershell.exe%' AND (UTF8(payload) ILIKE '%-version 2%' OR UTF8(payload) ILIKE '%-v 2%')"
+    }
+  ]
+}
