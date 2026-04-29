@@ -27,12 +27,24 @@ def send_telegram_alert(rule_name, event_count):
     requests.post(url, json=payload)
 
 def push_cre_rules():
-    print("--- 🔴 CRE QAYDALARI YÜKLƏNİR (OFFENSE YARADANLAR) ---")
+    print("--- 🔴 CRE QAYDALARI YENİLƏNİR (API UPDATE PROSESİ) ---")
     cre_files = glob.glob("../qradar_cre_rules/*.json")
     
-    # QRadar API Versiyasını qeyd edirik
+    # 1. QRadar-dan mövcud qaydaları çəkirik
+    print("🔄 QRadar-dan mövcud qaydaların siyahısı çəkilir...")
+    get_endpoint = f"{QRADAR_URL}/api/analytics/rules"
+    get_response = requests.get(get_endpoint, headers=headers, verify=False)
+    
+    if get_response.status_code != 200:
+        print(f"❌ Qaydaları oxumaq mümkün olmadı: {get_response.status_code} - {get_response.text}")
+        return
+        
+    existing_rules = get_response.json()
+    rule_dict = {rule['name']: rule['id'] for rule in existing_rules}
+    print(f"✅ Sistemdə qaydalar tapıldı. Yenilənməyə başlanılır...\n")
+    
     cre_headers = headers.copy()
-    cre_headers["Version"] = "16.0" 
+    cre_headers["Version"] = "12.0" 
     
     for file_path in cre_files:
         rule_name = os.path.basename(file_path).replace(".json", "")
@@ -43,15 +55,24 @@ def push_cre_rules():
                 print(f"❌ JSON xətası: {rule_name}")
                 continue
                 
-        endpoint = f"{QRADAR_URL}/api/analytics/rules"
-        response = requests.post(endpoint, headers=cre_headers, json=rule_payload, verify=False)
+        payload_name = rule_payload.get('name')
         
-        if response.status_code in [200, 201]:
-            print(f"✅ Uğurlu (CRE): '{rule_name}' interfeysdə yaradıldı!")
-        elif response.status_code == 409:
-            print(f"⚠️ Artıq mövcuddur: {rule_name}")
+        # 2. Əgər qaydanı QRadar-da tapdıqsa, UPDATE edirik
+        if payload_name in rule_dict:
+            rule_id = rule_dict[payload_name]
+            rule_payload['id'] = rule_id # ID-ni json içinə əlavə edirik
+            
+            # Endpoint artıq /rules/{id} olaraq dəyişdi! Bu API POST (Update) qəbul edir!
+            endpoint = f"{QRADAR_URL}/api/analytics/rules/{rule_id}"
+            
+            response = requests.post(endpoint, headers=cre_headers, json=rule_payload, verify=False)
+            
+            if response.status_code in [200, 201]:
+                print(f"✅ Uğurlu Update: '{payload_name}' (ID: {rule_id}) GitHub-dan yeniləndi!")
+            else:
+                print(f"❌ Xəta Update ({response.status_code}): {response.text}")
         else:
-            print(f"❌ Xəta ({response.status_code}): {response.text}")
+            print(f"⚠️ DİQQƏT: '{payload_name}' tapılmadı! Zəhmət olmasa bu qaydanı əvvəlcə QRadar-da eyni adla manual yaradın.")
 
 def run_aql_hunts():
     print("\n--- 🔵 AQL HUNT İCRA EDİLİR (TELEGRAM XƏBƏRDARLIQLI) ---")
@@ -70,7 +91,7 @@ def run_aql_hunts():
             search_id = response.json().get("search_id")
             print(f"⏳ Axtarış başladı: {rule_name}. Nəticə gözlənilir...")
             
-            time.sleep(5) # QRadar-ın axtarışı bitirməsi üçün 5 saniyə vaxt veririk
+            time.sleep(5) 
             
             res_endp = f"{QRADAR_URL}/api/ariel/searches/{search_id}/results"
             res = requests.get(res_endp, headers=aql_headers, verify=False)
@@ -85,7 +106,6 @@ def run_aql_hunts():
         else:
             print(f"❌ Xəta: {rule_name} icra edilmədi.")
 
-# BAX BU HİSSƏ ÇOX VACİBDİR! SKRİPTİ İŞƏ SALAN BLOK:
 if __name__ == "__main__":
     push_cre_rules()
     run_aql_hunts()
