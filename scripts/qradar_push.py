@@ -7,7 +7,7 @@ import json
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 # GitHub Secrets-dən gələcək gizli məlumatlar
-QRADAR_URL = os.environ.get("QRADAR_URL") # Məsələn: https://192.168.1.60
+QRADAR_URL = os.environ.get("QRADAR_URL")
 QRADAR_TOKEN = os.environ.get("QRADAR_TOKEN")
 
 def push_to_qradar():
@@ -26,13 +26,11 @@ def push_to_qradar():
         with open(file_path, "r", encoding="utf-8") as f:
             aql_query = f.read()
             
-        # QRadar API üçün Payload
+        # DÜZƏLİŞ BURADADIR: QRadar yalnız query_expression qəbul edir!
         payload = {
-            "name": f"API_Rule_{rule_name}",
             "query_expression": aql_query
         }
         
-        # QRadar-da AQL axtarışını qeyd etmək üçün endpoint
         endpoint = f"{QRADAR_URL}/api/ariel/searches"
         
         print(f"[{rule_name}] QRadar-a göndərilir...")
