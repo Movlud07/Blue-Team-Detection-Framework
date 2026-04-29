@@ -1,6 +1,1 @@
 SELECT UTF8(payload) FROM events WHERE devicetype=12 AND (("Event ID"=5145 OR "EventID"=5145 OR "qidEventId"=5145) AND ("Share Name"='\\*\IPC$' OR "ShareName"='\\*\IPC$') AND ("RelativeTargetName" ILIKE '%-stdin' OR "RelativeTargetName" ILIKE '%-stdout' OR "RelativeTargetName" ILIKE '%-stderr')) AND  NOT ("RelativeTargetName" ILIKE 'PSEXESVC%')
-
-/* name: Suspicious PsExec Execution */
-/* uuid: c462f537-a1e3-41a6-b5fc-b2c2cef9bf82 */
-/* author: Samir Bousseaden */
-/* licence: DRL 1.1 */
