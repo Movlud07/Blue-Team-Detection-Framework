@@ -1,1 +1,1 @@
-SELECT UTF8(payload) FROM events WHERE devicetype=12 AND (("Event ID"=4720 OR "EventID"=4720 OR "qidEventId"=4720) AND ("Target Username" ILIKE '%$' OR "User" ILIKE '%$' OR "userName" ILIKE '%$' OR "Target User Name" ILIKE '%$')) AND  NOT (("Target Username"='HomeGroupUser$' OR "User"='HomeGroupUser$' OR "userName"='HomeGroupUser$' OR "Target User Name"='HomeGroupUser$'))
+SELECT UTF8(payload) FROM events WHERE devicetype=12 AND ("EventID"=4720 OR "qidEventId"=4720) AND UTF8(payload) ILIKE '%$%' AND NOT (UTF8(payload) ILIKE '%HomeGroupUser$%')
