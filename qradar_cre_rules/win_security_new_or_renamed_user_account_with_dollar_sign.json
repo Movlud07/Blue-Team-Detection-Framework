@@ -1,0 +1,11 @@
+{
+  "name": "SOC Alert: Account Created/Renamed with Dollar Sign",
+  "type": "MEMBER",
+  "enabled": true,
+  "tests": [
+    {
+      "type": "AqlFilterTest",
+      "aql": "SELECT UTF8(payload) FROM events WHERE devicetype=12 AND (\"EventID\" IN (4720, 4781) OR \"qidEventId\" IN (4720, 4781)) AND UTF8(payload) ILIKE '%$%' AND NOT (UTF8(payload) ILIKE '%HomeGroupUser$%')"
+    }
+  ]
+}
