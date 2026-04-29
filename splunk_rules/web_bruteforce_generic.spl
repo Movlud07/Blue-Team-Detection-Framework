@@ -1,4 +1,4 @@
-(sc_status="401" OR sc_status="403") 
+(status_code="401" OR status_code="403") 
 | bucket _time span=5m 
-| stats count as failed_attempts by c_ip, _time 
+| stats count as failed_attempts by source_ip, _time 
 | where failed_attempts > 10
