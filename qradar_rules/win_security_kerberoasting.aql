@@ -1,1 +1,1 @@
-SELECT UTF8(payload) FROM events WHERE devicetype=12 AND (("Event ID"=4769 OR "EventID"=4769 OR "qidEventId"=4769) AND "Status"='0x0' AND "TicketEncryptionType"='0x17') AND  NOT (("Service Name" ILIKE '%krbtgt' OR "Service Name" ILIKE '%$') OR ("Target Username" ILIKE '%$@%' OR "User" ILIKE '%$@%' OR "userName" ILIKE '%$@%' OR "Target User Name" ILIKE '%$@%'))
+SELECT UTF8(payload) FROM events WHERE devicetype=12 AND ("EventID"=4769 OR "qidEventId"=4769) AND UTF8(payload) ILIKE '%0x17%' AND UTF8(payload) ILIKE '%0x0%' AND NOT (UTF8(payload) ILIKE '%krbtgt%')
