@@ -1,0 +1,11 @@
+{
+  "name": "SOC Alert: Member Added to Security Group",
+  "type": "MEMBER",
+  "enabled": true,
+  "tests": [
+    {
+      "type": "AqlFilterTest",
+      "aql": "SELECT UTF8(payload) FROM events WHERE devicetype=12 AND (\"EventID\" IN (4728, 4732, 4756, 632) OR \"qidEventId\" IN (4728, 4732, 4756, 632))"
+    }
+  ]
+}
