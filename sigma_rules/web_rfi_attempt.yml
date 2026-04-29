@@ -1,0 +1,19 @@
+title: Remote File Inclusion (RFI) Attempt
+id: d4e5f6g7-1234-4567-8901-abcdef123459
+status: stable
+description: Detects Remote File Inclusion (RFI) patterns where external URLs are passed in web parameters.
+author: Movlud Mirzazade (SOC Analyst)
+date: 2026/04/29
+logsource:
+    category: webserver
+detection:
+    selection:
+        c_uri|contains:
+            - '=?http://'
+            - '=?https://'
+            - '.php?url=http'
+            - 'include=http'
+    condition: selection
+level: high
+tags:
+    - attack.initial_access
