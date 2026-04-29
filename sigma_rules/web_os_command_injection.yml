@@ -1,0 +1,22 @@
+title: OS Command Injection Patterns
+id: b2c3d4e5-1234-4567-8901-abcdef123457
+status: stable
+description: Detects common OS command injection keywords in the URI.
+author: Movlud Mirzazade (SOC Analyst)
+date: 2026/04/29
+logsource:
+    category: webserver
+detection:
+    selection:
+        c_uri|contains:
+            - '/bin/bash'
+            - '/bin/sh'
+            - 'cat /etc/passwd'
+            - 'curl -s'
+            - 'wget http'
+            - 'nc -e'
+            - 'whoami'
+    condition: selection
+level: high
+tags:
+    - attack.execution
