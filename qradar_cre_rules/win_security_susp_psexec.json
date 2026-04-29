@@ -1,0 +1,11 @@
+{
+  "name": "SOC Alert: Suspicious PsExec Execution",
+  "type": "MEMBER",
+  "enabled": true,
+  "tests": [
+    {
+      "type": "AqlFilterTest",
+      "aql": "SELECT UTF8(payload) FROM events WHERE devicetype=12 AND (((\"EventID\"=5145 OR \"qidEventId\"=5145) AND UTF8(payload) ILIKE '%\\\\IPC$%' AND (UTF8(payload) ILIKE '%-stdin%' OR UTF8(payload) ILIKE '%-stdout%' OR UTF8(payload) ILIKE '%-stderr%')) OR ((\"EventID\" IN (1, 4688, 7045, 4697) OR \"qidEventId\" IN (1, 4688, 7045, 4697)) AND UTF8(payload) ILIKE '%PSEXESVC%'))"
+    }
+  ]
+}
