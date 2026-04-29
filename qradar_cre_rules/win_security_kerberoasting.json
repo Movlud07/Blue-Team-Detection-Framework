@@ -1,0 +1,11 @@
+{
+  "name": "SOC Alert: Kerberoasting Attack Attempt",
+  "type": "MEMBER",
+  "enabled": true,
+  "tests": [
+    {
+      "type": "AqlFilterTest",
+      "aql": "SELECT UTF8(payload) FROM events WHERE devicetype=12 AND (\"EventID\"=4769 OR \"qidEventId\"=4769) AND UTF8(payload) ILIKE '%0x17%' AND UTF8(payload) ILIKE '%0x0%' AND NOT (UTF8(payload) ILIKE '%krbtgt%')"
+    }
+  ]
+}
