@@ -1,8 +1,1 @@
-source=WinEventLog:* AND (c_uri="*169.254.169.254*" OR c_uri="*127.0.0.1*" OR c_uri="*file://*" OR c_uri="*dict://*" OR c_uri="*gopher://*")
-
-``` name: Server-Side Request Forgery (SSRF) Attempt ```
-``` uuid: a1b2c3d4-1234-4567-8901-abcdef123456 ```
-``` author: Movlud Mirzazade (SOC Analyst) ```
-``` licence: DRL 1.1 ```
-
-``` Unmapped fields: c_uri ```
+index=* AND (request_uri="*169.254.169.254*" OR request_uri="*127.0.0.1*" OR request_uri="*file://*" OR request_uri="*dict://*" OR request_uri="*gopher://*")
