@@ -1,0 +1,6 @@
+SELECT UTF8(payload) FROM events WHERE devicetype=12 AND ("Event ID"=4720 OR "EventID"=4720 OR "qidEventId"=4720)
+
+/* name: Local User Creation */
+/* uuid: 66b6be3d-55d0-4f47-9855-d69df21740ea */
+/* author: Patrick Bareiss */
+/* licence: DRL 1.1 */
