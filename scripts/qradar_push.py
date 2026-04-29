@@ -12,10 +12,11 @@ QRADAR_URL = raw_url.rstrip('/')
 QRADAR_TOKEN = os.environ.get("QRADAR_TOKEN")
 
 def push_to_qradar():
-    # 100% qarantili headers
+    # 100% qarantili headers - Content-Type əlavə olundu
     headers = {
         "SEC": QRADAR_TOKEN,
-        "Accept": "application/json"
+        "Accept": "application/json",
+        "Content-Type": "application/json"
     }
     
     rule_files = glob.glob("../qradar_rules/*.aql")
@@ -26,23 +27,24 @@ def push_to_qradar():
         with open(file_path, "r", encoding="utf-8") as f:
             aql_query = f.read().strip()
             
-        # QRadar-ın Saved Search yaratmaq üçün istədiyi parametrlər
+        # QRadar-ın AQL icrası üçün istədiyi parametrlər
         payload = {
-            "name": f"API_Rule_{rule_name}",
             "query_expression": aql_query
         }
         
-        # Sənin curl ilə cavab aldığın o tam doğru ünvan
-        endpoint = f"{QRADAR_URL}/api/ariel/saved_searches"
+        # Doğru endpoint: Mövcud olmayan saved_searches yerinə birbaşa searches
+        endpoint = f"{QRADAR_URL}/api/ariel/searches"
         
-        print(f"[{rule_name}] QRadar-a yüklənir...")
+        print(f"[{rule_name}] QRadar-a göndərilir...")
         
-        # DÜZƏLİŞ: json=payload YERİNƏ data=payload istifadə edirik!
-        # Bu, məlumatı form-data kimi göndərir və QRadar-ın inadını qırır.
-        response = requests.post(endpoint, headers=headers, data=payload, verify=False)
+        # DÜZƏLİŞ: data=payload YERİNƏ json=payload istifadə edirik!
+        response = requests.post(endpoint, headers=headers, json=payload, verify=False)
         
         if response.status_code in [200, 201]:
-            print(f"✅ Uğurlu: API_Rule_{rule_name}")
+            # Uğurlu olduqda QRadar bizə bir search_id qaytarır
+            response_data = response.json()
+            search_id = response_data.get("search_id", "Bilinmir")
+            print(f"✅ Uğurlu: {rule_name} (Search ID: {search_id})")
         elif response.status_code == 409:
             print(f"⚠️ Artıq mövcuddur: {rule_name}")
         else:
