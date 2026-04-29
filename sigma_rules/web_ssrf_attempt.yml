@@ -1,0 +1,20 @@
+title: Server-Side Request Forgery (SSRF) Attempt
+id: a1b2c3d4-1234-4567-8901-abcdef123456
+status: stable
+description: Detects attempts to access cloud metadata (169.254.169.254) or localhost (127.0.0.1) indicative of SSRF.
+author: Movlud Mirzazade (SOC Analyst)
+date: 2026/04/29
+logsource:
+    category: webserver
+detection:
+    selection:
+        c_uri|contains:
+            - '169.254.169.254'
+            - '127.0.0.1'
+            - 'file://'
+            - 'dict://'
+            - 'gopher://'
+    condition: selection
+level: high
+tags:
+    - attack.initial_access
