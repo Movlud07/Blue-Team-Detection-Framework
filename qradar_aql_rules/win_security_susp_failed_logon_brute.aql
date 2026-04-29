@@ -1,0 +1,1 @@
+SELECT UTF8(payload) FROM events WHERE devicetype=12 AND ("EventID"=4625 OR "qidEventId"=4625) AND NOT (UTF8(payload) ILIKE '%127.0.0.1%')
