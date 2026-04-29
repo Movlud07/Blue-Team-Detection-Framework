@@ -1,0 +1,6 @@
+source=WinEventLog:* AND ("${jndi:ldap:/" OR "${jndi:rmi:/" OR "${jndi:ldaps:/" OR "${jndi:dns:/" OR "/$%7bjndi:" OR "%24%7bjndi:" OR "$%7Bjndi:" OR "%2524%257Bjndi" OR "%2F%252524%25257Bjndi%3A" OR "${jndi:${lower:" OR "${::-j}${" OR "${jndi:nis" OR "${jndi:nds" OR "${jndi:corba" OR "${jndi:iiop" OR "Reference Class Name: foo" OR "${${env:BARFOO:-j}" OR "${::-l}${::-d}${::-a}${::-p}" OR "${base64:JHtqbmRp" OR "${${env:ENV_NAME:-j}ndi${env:ENV_NAME:-:}$" OR "${${lower:j}ndi:" OR "${${upper:j}ndi:" OR "${${::-j}${::-n}${::-d}${::-i}:") AND  NOT (("w.nessus.org/nessus" OR "/nessus}"))
+
+``` name: Log4j RCE CVE-2021-44228 Generic ```
+``` uuid: 5ea8faa8-db8b-45be-89b0-151b84c82702 ```
+``` author: Florian Roth (Nextron Systems) ```
+``` licence: DRL 1.1 ```
