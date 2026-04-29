@@ -1,0 +1,6 @@
+SELECT UTF8(payload) FROM events WHERE devicetype=12 AND ((("Event ID"=4625 OR "Event ID"=4776) OR ("EventID"=4625 OR "EventID"=4776) OR ("qidEventId"=4625 OR "qidEventId"=4776)) AND (("Status"='0xC0000072' OR "Status"='0xC000006F' OR "Status"='0xC0000070' OR "Status"='0xC0000413' OR "Status"='0xC000018C' OR "Status"='0xC000015B') OR ("SubStatus"='0xC0000072' OR "SubStatus"='0xC000006F' OR "SubStatus"='0xC0000070' OR "SubStatus"='0xC0000413' OR "SubStatus"='0xC000018C' OR "SubStatus"='0xC000015B'))) AND  NOT ("SubjectUserSid"='S-1-0-0')
+
+/* name: Account Tampering - Suspicious Failed Logon Reasons */
+/* uuid: 9eb99343-d336-4020-a3cd-67f3819e68ee */
+/* author: Florian Roth (Nextron Systems) */
+/* licence: DRL 1.1 */
