@@ -1,0 +1,1 @@
+SELECT UTF8(payload) FROM events WHERE devicetype=12 AND ("EventID" IN (4625, 4776) OR "qidEventId" IN (4625, 4776)) AND (UTF8(payload) ILIKE '%0xC0000072%' OR UTF8(payload) ILIKE '%0xC000006F%' OR UTF8(payload) ILIKE '%0xC0000070%' OR UTF8(payload) ILIKE '%0xC0000413%' OR UTF8(payload) ILIKE '%0xC000018C%' OR UTF8(payload) ILIKE '%0xC000015B%')
