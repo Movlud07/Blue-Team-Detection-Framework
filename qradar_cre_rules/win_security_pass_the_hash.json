@@ -1,0 +1,11 @@
+{
+  "name": "SOC Alert: Pass-the-Hash Attack Detected",
+  "type": "MEMBER",
+  "enabled": true,
+  "tests": [
+    {
+      "type": "AqlFilterTest",
+      "aql": "SELECT UTF8(payload) FROM events WHERE devicetype=12 AND (\"EventID\"=4624 OR \"qidEventId\"=4624) AND UTF8(payload) ILIKE '%NtLmSsp%' AND UTF8(payload) ILIKE '%Logon Type: 3%' AND NOT (UTF8(payload) ILIKE '%ANONYMOUS LOGON%')"
+    }
+  ]
+}
