@@ -1,7 +1,9 @@
 {
   "name": "SOC Alert: DCSync Attack Detected",
-  "type": "MEMBER",
+  "type": "EVENT",
   "enabled": true,
+  "base_capacity": 100,
+  "base_low_level_category_id": 0,
   "tests": [
     {
       "type": "AqlFilterTest",
