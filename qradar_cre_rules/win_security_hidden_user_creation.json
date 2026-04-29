@@ -1,0 +1,11 @@
+{
+  "name": "SOC Alert: Hidden User Creation Detected",
+  "type": "MEMBER",
+  "enabled": true,
+  "tests": [
+    {
+      "type": "AqlFilterTest",
+      "aql": "SELECT UTF8(payload) FROM events WHERE devicetype=12 AND (\"EventID\"=4720 OR \"qidEventId\"=4720) AND UTF8(payload) ILIKE '%$%' AND NOT (UTF8(payload) ILIKE '%HomeGroupUser$%')"
+    }
+  ]
+}
