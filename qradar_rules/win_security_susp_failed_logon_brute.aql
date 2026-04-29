@@ -1,1 +1,1 @@
-SELECT sourceip, username, destinationip, LOGSOURCENAME(logsourceid) AS "Log_Source" FROM events WHERE "EventID" = '4625' AND sourceip IS NOT NULL AND sourceip <> '-' AND sourceip <> '::1' AND NOT INCIDR('10.0.0.0/8', sourceip) AND NOT INCIDR('127.0.0.0/8', sourceip) AND NOT INCIDR('172.16.0.0/12', sourceip) AND NOT INCIDR('192.168.0.0/16', sourceip) AND NOT INCIDR('169.254.0.0/16', sourceip)
+SELECT UTF8(payload) FROM events WHERE devicetype=12 AND ("EventID"=4625 OR "qidEventId"=4625) AND NOT (UTF8(payload) ILIKE '%127.0.0.1%')
