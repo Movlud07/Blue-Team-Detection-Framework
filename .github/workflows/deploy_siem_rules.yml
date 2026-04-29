@@ -1,0 +1,40 @@
+name: Deploy SOC Rules to SIEM
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy-rules:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 1. Repozitoriyanı Oxu
+      uses: actions/checkout@v3
+
+    - name: 2. Python Mühitini Qur
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: 3. Lazımi Kitabxanaları Yüklə (Requests)
+      run: |
+        python -m pip install --upgrade pip
+        pip install requests urllib3
+
+    - name: 4. Splunk Qaydalarını Göndər
+      env:
+        SPLUNK_URL: ${{ secrets.SPLUNK_URL }}
+        SPLUNK_TOKEN: ${{ secrets.SPLUNK_TOKEN }}
+      run: |
+        cd scripts
+        python splunk_push.py
+
+    - name: 5. QRadar Qaydalarını Göndər
+      env:
+        QRADAR_URL: ${{ secrets.QRADAR_URL }}
+        QRADAR_TOKEN: ${{ secrets.QRADAR_TOKEN }}
+      run: |
+        cd scripts
+        python qradar_push.py
