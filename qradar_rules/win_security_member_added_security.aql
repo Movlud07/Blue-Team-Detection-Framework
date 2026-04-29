@@ -1,6 +1,1 @@
 SELECT UTF8(payload) FROM events WHERE devicetype=12 AND (("Event ID"=4728 OR "Event ID"=632) OR ("EventID"=4728 OR "EventID"=632) OR ("qidEventId"=4728 OR "qidEventId"=632))
-
-/* name: A Member Was Added to a Security-Enabled Global Group */
-/* uuid: c43c26be-2e87-46c7-8661-284588c5a53e */
-/* author: Alexandr Yampolskyi, SOC Prime */
-/* licence: DRL 1.1 */
