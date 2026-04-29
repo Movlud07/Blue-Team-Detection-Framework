@@ -1,0 +1,11 @@
+{
+  "name": "SOC Alert: Renamed ProcDump Execution",
+  "type": "MEMBER",
+  "enabled": true,
+  "tests": [
+    {
+      "type": "AqlFilterTest",
+      "aql": "SELECT UTF8(payload) FROM events WHERE devicetype=12 AND (\"EventID\" IN (1, 4688) OR \"qidEventId\" IN (1, 4688)) AND (UTF8(payload) ILIKE '% -ma %' OR UTF8(payload) ILIKE '% -mp %') AND UTF8(payload) ILIKE '%/accepteula%' AND NOT (UTF8(payload) ILIKE '%procdump.exe%' OR UTF8(payload) ILIKE '%procdump64.exe%')"
+    }
+  ]
+}
