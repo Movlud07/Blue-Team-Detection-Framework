@@ -1,1 +1,1 @@
-SELECT UTF8(payload) FROM events WHERE devicetype=12 AND category=8110 AND ("Command" ILIKE '%-NoP -NoL -sta -NonI -W Hidden -Exec Bypass -Enc%' OR "Encoded Argument" ILIKE '%-NoP -NoL -sta -NonI -W Hidden -Exec Bypass -Enc%' OR "Command Arguments" ILIKE '%-NoP -NoL -sta -NonI -W Hidden -Exec Bypass -Enc%')
+SELECT UTF8(payload) FROM events WHERE devicetype=12 AND ("EventID" IN (1, 4688) OR "qidEventId" IN (1, 4688)) AND UTF8(payload) ILIKE '%-NoP -NoL -sta -NonI -W Hidden -Exec Bypass -Enc%'
